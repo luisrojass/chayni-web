@@ -1,6 +1,6 @@
 // Dependencies
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import { signOut } from 'firebase/auth'
 import { auth } from '../connections/firebase'
 
 // Components
@@ -12,6 +12,17 @@ import { useSession } from '../hooks/useSession'
 function Account() {
   const { setUser, user, logging } = useSession()
   const navigate = useNavigate()
+
+  const login = async () => {
+    const provider = new GoogleAuthProvider()
+    try {
+      const credentials = await signInWithPopup(auth, provider)
+      setUser(credentials.user)
+
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   const logout = async () => {
     try {
@@ -27,7 +38,7 @@ function Account() {
     return (
       <div className='container'>
         <div
-          className='spinner-border text-primary position-absolute top-50'
+          className='spinner-border text-secondary position-absolute top-50'
           role='status' style={{ height: '3rem', width: '3rem', left: 'calc(50% - 1.5rem)' }}>
         </div>
       </div>
@@ -37,13 +48,16 @@ function Account() {
   if (!user) {
     return (
       <div className='container pt-5'>
-        <div className='row justify-content-center py-5 px-4'>
-          <div className='col col-12 col-lg-6'>
-            <div className='rounded-circle bg-secondary user-image m-auto' />
-          </div>
-          <div className='col col-12 col-lg-6 pt-4'>
-            <h2 className='text-center text-lg-start'>¡Inicia sesión para ver tus pedidos!</h2>
-            <button className='btn btn-primary align-self-center' onClick={logout}>Iniciar sesión</button>
+        <i className='bi bi-person-fill-slash d-block text-center' style={{ fontSize: '12rem' }}></i>
+        <div className='d-block'>
+          <h2 className='text-center px-3 mb-5'>
+            ¡Inicia sesión para ver tus pedidos, dejar comentarios y más!
+          </h2>
+          <div className='d-flex justify-content-center'>
+            <button className='btn btn-success' onClick={login}>
+              <i className='bi bi-google me-2'></i>
+              Iniciar sesión
+            </button>
           </div>
         </div>
       </div>
@@ -51,7 +65,7 @@ function Account() {
   }
 
   return (
-    <div className='container pt-5'>
+    <div className='container pt-4'>
       <div className='row justify-content-center py-5 px-4'>
         <div className='col col-12 col-lg-6'>
           <div className='rounded-circle user-image m-auto'
@@ -62,7 +76,10 @@ function Account() {
           <p className='text-center text-lg-start'>{user?.email}</p>
 
           <div className='d-flex justify-content-center justify-content-lg-start'>
-            <button className='btn btn-danger' onClick={logout}>Cerrar sesión</button>
+            <button className='btn btn-danger' onClick={logout}>
+              Cerrar sesión
+              <i className='bi bi-box-arrow-right ms-2'></i>
+            </button>
           </div>
         </div>
       </div>

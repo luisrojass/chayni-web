@@ -40,7 +40,7 @@ function Navbar() {
             {
               logging
                 ? (
-                  <button className='btn btn-primary' type='button' disabled>
+                  <button className='btn btn-secondary' type='button' disabled>
                     <span className='spinner-border spinner-border-sm me-2' role='status' aria-hidden='true' />
                     Cargando...
                   </button>
