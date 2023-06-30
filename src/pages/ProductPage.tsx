@@ -2,16 +2,20 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-// Data
-import products from '../data/products.json'
-
 // Components
 import ProductList from '../components/ProductList'
-import { Product } from '../components/ProductCard'
+
+// Hooks
+import { useProducts } from '../hooks/useProducts'
+
+// Schemas
+import { Product } from '../schemas/Product'
 
 function ProductPage() {
   const { pathname } = useLocation()
-  const [product, setProduct] = useState(null as unknown as Product)
+  const { getProduct } = useProducts()
+
+  const [product, setProduct] = useState<Product>()
   const [quantity, setQuantity] = useState(innerWidth > 992 && innerWidth < 1200 ? 3 : 4)
 
   const resize = () => {
@@ -24,7 +28,7 @@ function ProductPage() {
   }, [])
 
   useEffect(() => {
-    setProduct(products.filter(p => pathname.includes(p.id))[0])
+    setProduct(getProduct(pathname.slice(1)))
   }, [pathname])
 
   return (
@@ -45,7 +49,7 @@ function ProductPage() {
       </div>
 
       <h5 className='px-2 px-lg-4'>Productos relacionados</h5>
-      <ProductList sort quantity={quantity} />
+      <ProductList quantity={quantity} />
     </div>
   )
 }

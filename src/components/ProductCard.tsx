@@ -1,26 +1,25 @@
-import { Link } from "react-router-dom"
-import { useTheme } from "../hooks/useTheme"
+// Dependencies
+import { Link } from 'react-router-dom'
 
-export interface Product {
-  title: string
-  image: string
-  price: number
-  id: string
-  description?: string
-}
+// Hooks
+import { useTheme } from '../hooks/useTheme'
+import { useProducts } from '../hooks/useProducts'
 
-function ProductCard(
-  { title, image, price, id }: Product
-) {
+// Schemas
+import { Product } from '../schemas/Product'
+
+function ProductCard({ product }: { product: Product }) {
   const { theme } = useTheme()
+  const { sort } = useProducts()
+  const { title, image, price, id } = product
 
   return (
-    <div className="col">
+    <div className='col'>
       <Link to={`/${id}`} className='text-decoration-none'
-        onClick={() => window.scroll({
-          top: 0,
-          behavior: 'smooth'
-        })}
+        onClick={() => {
+          sort()
+          window.scroll({ top: 0, behavior: 'smooth' })
+        }}
       >
         <div className='card shadow hover-card h-100 border-0 p-0 overflow-hidden'>
           <div className='card-image' style={{ backgroundImage: `url('${image}')` }} />

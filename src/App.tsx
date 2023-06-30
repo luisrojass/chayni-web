@@ -4,9 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useEffect } from 'react'
 import { auth } from './connections/firebase'
 
-// Data
-import products from './data/products.json'
-
 // Components
 import Navbar from './components/Navbar'
 
@@ -17,16 +14,19 @@ import ProductPage from './pages/ProductPage'
 // Hooks
 import { useTheme } from './hooks/useTheme'
 import { useSession } from './hooks/useSession'
+import { useProducts } from './hooks/useProducts'
 
 function App() {
   const { theme } = useTheme()
   const { setUser } = useSession()
+  const { products, sort } = useProducts()
 
   useEffect(() => {
     document.body.setAttribute('data-bs-theme', theme)
   }, [theme])
 
   useEffect(() => {
+    sort()
     onAuthStateChanged(auth, (user) => setUser(user))
   }, [])
 
