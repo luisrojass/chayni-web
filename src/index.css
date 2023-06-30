@@ -1,0 +1,48 @@
+:root {
+  font-size: 16px;
+}
+
+.card-image {
+  width: 100%;
+  height: 33vh;
+  background-size: cover;
+}
+
+.product-image {
+  width: 100%;
+  height: 45vh;
+  background-size: cover;
+}
+
+.hover-icon {
+  transition: all 100ms;
+}
+.hover-icon:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+.hover-card:hover {
+  cursor: pointer;
+}
+.hover-card>.card-image {
+  transition: all 250ms;
+}
+.hover-card:hover>.card-image {
+  scale: 1.35;
+}
+
+.hover-zoom {
+  transition: all 250ms;
+}
+.hover-zoom:hover {
+  scale: 2
+}
+
+.banner {
+  width: 100vw;
+  height: 50vh;
+  background-image: url('/src/assets/banner.webp');
+  background-position: 98% 10%;
+  background-size: cover;
+}
