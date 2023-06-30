@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 // Pages
 import Home from './pages/Home'
 import ProductPage from './pages/ProductPage'
+import Account from './pages/Account'
 
 // Hooks
 import { useTheme } from './hooks/useTheme'
@@ -18,7 +19,7 @@ import { useProducts } from './hooks/useProducts'
 
 function App() {
   const { theme } = useTheme()
-  const { setUser } = useSession()
+  const { setUser, setLogging } = useSession()
   const { products, sort } = useProducts()
 
   useEffect(() => {
@@ -28,6 +29,9 @@ function App() {
   useEffect(() => {
     sort()
     onAuthStateChanged(auth, (user) => setUser(user))
+    setTimeout(() => {
+      setLogging(false)
+    }, 1000);
   }, [])
 
   return (
@@ -36,6 +40,7 @@ function App() {
       <div className='pt-5 pb-3'>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/account' element={<Account />} />
           {
             products.map(({ id }) => (
               <Route path={`/${id}`} key={id} element={<ProductPage />} />

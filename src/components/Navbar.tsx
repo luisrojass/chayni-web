@@ -1,5 +1,5 @@
 // Dependencies
-import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { Link } from 'react-router-dom'
 import { auth } from '../connections/firebase'
 
@@ -9,7 +9,7 @@ import { useSession } from '../hooks/useSession'
 
 function Navbar() {
   const { theme, toggleTheme } = useTheme()
-  const { user, setUser } = useSession()
+  const { user, setUser, logging } = useSession()
 
   const login = async () => {
     const provider = new GoogleAuthProvider()
@@ -22,23 +22,14 @@ function Navbar() {
     }
   }
 
-  const logout = async () => {
-    try {
-      await signOut(auth)
-      setUser(null)
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
   return (
     <div className='position-fixed top-0 w-100 z-3'>
       <nav className={`navbar navbar-expand-xxl shadow px-3 bg-${theme}`}>
         <div className='d-flex align-items-center justify-content-between w-100'>
           <Link className='navbar-brand' to='/'
             onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}>
-            {innerWidth >= 992 && <img src='/icon32.png' className='pb-1' />}
-            <span className='navbar-brand mx-0 ms-lg-2'>Chayni</span>
+            <img src='/icon32.png' className='pb-1' />
+            <span className='navbar-brand ms-2'>Chayni</span>
           </Link>
 
           <div>
@@ -47,20 +38,28 @@ function Navbar() {
                 onClick={toggleTheme}></i>
             </button>
             {
-              user?.email
+              logging
                 ? (
-                  <>
-                    <div className='d-inline-flex pe-3' style={{ maxWidth: '18vw', height: '1.6rem', overflow: 'hidden' }}>
-                      <span className='text-secondary text-center'>{user?.displayName}</span>
-                    </div>
-                    <button className='btn btn-danger' onClick={logout}>Cerrar sesión</button>
-                  </>
-                )
-                : (
-                  <button className='btn btn-success my-0' onClick={login}>
-                    Iniciar sesión
+                  <button className='btn btn-primary' type='button' disabled>
+                    <span className='spinner-border spinner-border-sm me-2' role='status' aria-hidden='true' />
+                    Cargando...
                   </button>
                 )
+                : user?.email
+                  ? (
+                    <Link to='/account'>
+                      <button className='btn btn-primary'>
+                        <i className='bi bi-person-fill me-2'></i>
+                        Mi cuenta
+                      </button>
+                    </Link>
+                  )
+                  : (
+                    <button className='btn btn-success my-0' onClick={login}>
+                      <i className='bi bi-google me-2'></i>
+                      Iniciar sesión
+                    </button>
+                  )
             }
           </div>
         </div>
