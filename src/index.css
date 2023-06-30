@@ -17,6 +17,7 @@
 .hover-icon {
   transition: all 100ms;
 }
+
 .hover-icon:hover {
   cursor: pointer;
   scale: 1.1;
@@ -25,9 +26,11 @@
 .hover-card:hover {
   cursor: pointer;
 }
+
 .hover-card>.card-image {
   transition: all 250ms;
 }
+
 .hover-card:hover>.card-image {
   scale: 1.35;
 }
@@ -35,8 +38,10 @@
 .hover-zoom {
   transition: all 250ms;
 }
+
 .hover-zoom:hover {
-  scale: 2
+  scale: 2;
+  background-position-y: 100%;
 }
 
 .banner {

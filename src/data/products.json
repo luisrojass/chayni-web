@@ -21,18 +21,18 @@
     "price": 119.90
   },
   {
-    "title": "Chaleco beige con textura de rayas y estampado",
-    "id": "c04",
-    "description": "Protege el planeta con estilo usando nuestros chalecos biodegradables. Diseñados para ser amigables con el medio ambiente, estos chalecos se descomponen naturalmente después de su uso, evitando la acumulación de residuos plásticos. Siéntete bien vistiendo nuestros chalecos biodegradables y cuidando nuestro hogar, la Tierra.",
-    "image": "https://th.bing.com/th/id/OIG.f.FF2dbP4xSHsIx4RxCN?pid=ImgGn",
-    "price": 109.90
-  },
-  {
     "title": "Chaleco beige con textura de rayas y un botón",
     "id": "c05",
     "description": "Nuestros chalecos biodegradables combinan moda y sostenibilidad. Hechos con materiales degradable, estos chalecos ofrecen una opción consciente para aquellos preocupados por el medio ambiente. Siéntete bien al usar nuestros chalecos biodegradables y contribuye a un futuro más limpio y saludable.",
     "image": "https://th.bing.com/th/id/OIG.SQDgy8EVagn5dMdDU1Z0?pid=ImgGn",
     "price": 149.90
+  },
+  {
+    "title": "Chaleco beige clásico",
+    "id": "c04",
+    "description": "Protege el planeta con estilo usando nuestros chalecos biodegradables. Diseñados para ser amigables con el medio ambiente, estos chalecos se descomponen naturalmente después de su uso, evitando la acumulación de residuos plásticos. Siéntete bien vistiendo nuestros chalecos biodegradables y cuidando nuestro hogar, la Tierra.",
+    "image": "https://th.bing.com/th/id/OIG.4fxAMakFo4GZ2DvInlGS?pid=ImgGn",
+    "price": 109.90
   },
   {
     "title": "Chaleco beige con textura de rayas y botones",

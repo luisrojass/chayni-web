@@ -17,7 +17,7 @@ function ProductList({ sort, quantity }: ProductList) {
   const list = products.slice(0, quantity ?? 24)
 
   return (
-    <div className='container px-4 py-3'>
+    <div className='container p-4'>
       <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4'>
         {
           list.map(({ title, image, price, id }) => (
