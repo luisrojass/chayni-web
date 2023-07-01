@@ -7,22 +7,24 @@ import ProductList from '../components/ProductList'
 
 // Hooks
 import { useProducts } from '../hooks/useProducts'
+import { useSession } from '../hooks/useSession'
 
 // Schemas
 import { Product } from '../schemas/product'
 
 // Functions
 import { orderProduct } from '../connections/orderProduct'
-import { useSession } from '../hooks/useSession'
+import { login } from '../connections/login'
 
 function ProductPage() {
   const { pathname } = useLocation()
   const { getProduct } = useProducts()
-  const { user } = useSession()
+  const { user, setUser } = useSession()
 
   const [product, setProduct] = useState<Product>()
   const [quantity, setQuantity] = useState(innerWidth > 992 && innerWidth < 1200 ? 3 : 4)
   const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
   const [success, setSuccess] = useState(false)
 
   const resize = () => {
@@ -31,14 +33,31 @@ function ProductPage() {
 
   const sendOrder = async () => {
     setLoading(true)
-    if (user) {
+    if (!user) {
+      setLoading(true)
+      setMessage('Iniciando sesión...')
+      const success = await login()
+      if (success) {
+        setUser(success)
+        setMessage('¡Ahora puedes pedirlo!')
+      }
+      else {
+        setMessage('No se pudo iniciar sesión')
+      }
+      setTimeout(() => setMessage(''), 2000)
+      setLoading(false)
+    }
+
+    else {
       const success = await orderProduct(product as Product, user)
-      setSuccess(success)
+      setMessage(success ? '!Te enviaremos un email pronto!' : 'Ocurrió un error')
+      setSuccess(true)
       setTimeout(() => {
+        setMessage('')
         setSuccess(false)
       }, 2000)
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -74,7 +93,7 @@ function ProductPage() {
               }
             </button>
           </h5>
-          {success && <h5 className='text-success'>Te enviaremos un email pronto!</h5>}
+          {message !== '' && <h5 className='text-success'>{message}</h5>}
           <p>{product?.description}</p>
         </div>
       </div>

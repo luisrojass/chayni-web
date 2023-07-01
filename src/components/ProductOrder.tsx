@@ -1,9 +1,6 @@
 // Dependencies
 import { useState } from 'react'
 
-// Hooks
-import { useTheme } from '../hooks/useTheme'
-
 // Functions
 import { cancelOrder } from '../connections/cancelOrder'
 
@@ -11,7 +8,6 @@ import { cancelOrder } from '../connections/cancelOrder'
 import { OrderCard } from '../schemas/order'
 
 function ProductOrder({ product }: { product: OrderCard }) {
-  const { theme } = useTheme()
   const { title, image, price, delivered, id } = product
   const [loading, setLoading] = useState(false)
   const [canceled, setCanceled] = useState(false)
@@ -37,7 +33,7 @@ function ProductOrder({ product }: { product: OrderCard }) {
             <div className='card-order-image' style={{ backgroundImage: `url('${image}')` }} />
           </div>
           <div className="col">
-            <div className={`card-body z-1 bg-${theme}`}>
+            <div className={`card-body z-1`}>
               <h5 className='card-title'>{title}</h5>
               <p className='card-text text-danger fw-bold'>S/{price?.toFixed(2)}</p>
               {
