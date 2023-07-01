@@ -5,6 +5,7 @@ import { auth } from '../connections/firebase'
 
 // Components
 import ProductList from '../components/ProductList'
+import Footer from '../components/Footer'
 
 // Hooks
 import { useSession } from '../hooks/useSession'
@@ -65,41 +66,47 @@ function Account() {
   }
 
   return (
-    <div className='container pt-4'>
-      <div className='row justify-content-center py-5 px-4'>
-        <div className='col col-12 col-lg-6'>
-          <div className='rounded-circle user-image m-auto'
-            style={{ backgroundImage: `url('${user?.photoURL}')` }} />
-        </div>
+    <>
+      <div className='container pt-4'>
+        <div className='row justify-content-center py-5 px-4'>
+          <div className='col col-12 col-lg-6'>
+            <div className='rounded-circle user-image m-auto'
+              style={{
+                backgroundImage: `url('${user?.photoURL?.slice(
+                  0, user?.photoURL?.length - 4).concat('360-c')}')`
+              }} />
+          </div>
 
-        <div className='col col-12 col-lg-6 pt-4'>
-          <h2 className='text-center text-lg-start'>{user?.displayName}</h2>
-          <p className='text-center text-lg-start'>{user?.email}</p>
+          <div className='col col-12 col-lg-6 pt-4'>
+            <h2 className='text-center text-lg-start'>{user?.displayName}</h2>
+            <p className='text-center text-lg-start'>{user?.email}</p>
 
-          <div className='d-flex justify-content-center justify-content-lg-start'>
-            <button className='btn btn-danger' onClick={logout}>
-              Cerrar sesión
-              <i className='bi bi-box-arrow-right ms-2'></i>
-            </button>
+            <div className='d-flex justify-content-center justify-content-lg-start'>
+              <button className='btn btn-danger' onClick={logout}>
+                Cerrar sesión
+                <i className='bi bi-box-arrow-right ms-2'></i>
+              </button>
+            </div>
+          </div>
+
+          <div className='col col-12 my-4 d-flex justify-content-center'>
+            <div className='position-absolute d-flex justify-content-center'>
+              <Link className='nav-link navbar-link text-decoration-none me-4' to='/reviews'>
+                Reseñas
+              </Link>
+
+              <Link className='nav-link navbar-link text-decoration-none' to='/orders'>
+                Mis pedidos
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className='col col-12 my-4 d-flex justify-content-center'>
-          <div className='position-absolute d-flex justify-content-center'>
-            <Link className='nav-link text-decoration-none me-4' to='/reviews'>
-              Reseñas
-            </Link>
-
-            <Link className='nav-link text-decoration-none' to='/orders'>
-              Mis pedidos
-            </Link>
-          </div>
-        </div>
+        <h5 className='px-4'>Te puede interesar</h5>
+        <ProductList quantity={12} />
       </div>
-
-      <h5 className='px-4'>Te puede interesar</h5>
-      <ProductList quantity={12} />
-    </div>
+      <Footer />
+    </>
   )
 }
 

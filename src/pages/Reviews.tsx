@@ -9,7 +9,6 @@ import { useSession } from '../hooks/useSession'
 import { useTheme } from '../hooks/useTheme'
 
 // Functions
-import { login } from '../connections/login'
 import { createReview } from '../connections/createReview'
 import { getReviews } from '../connections/getReviews'
 
@@ -74,7 +73,7 @@ function Reviews() {
         </div>
 
         <div className={`position-fixed w-100 bottom-0 pt-3 pb-2 px-4 bg-${theme} z-1`}
-          style={{ boxShadow: '1rem 1rem 2.5rem #000' }}>
+          style={{ boxShadow: '1rem 1rem 2rem #000' }}>
           <h5 className='text-center'>
             ¡Inicia sesión para dejar un comentario!
           </h5>
@@ -99,7 +98,7 @@ function Reviews() {
       </div>
 
       <div className={`position-fixed w-100 bottom-0 p-3 px-lg-5 bg-${theme} z-1`}
-        style={{ boxShadow: '1rem 1rem 2.5rem #000' }}>
+        style={{ boxShadow: '1rem 1rem 2rem #000' }}>
         <div className='input-group'>
           <textarea className='form-control' placeholder='Los chalecos me parecieron...'
             rows={1} onChange={e => setContent(e.target.value)} value={content}></textarea>

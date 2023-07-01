@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 
 // Components
 import ProductList from '../components/ProductList'
+import Footer from '../components/Footer'
 
 // Hooks
 import { useProducts } from '../hooks/useProducts'
@@ -70,37 +71,40 @@ function ProductPage() {
   }, [pathname])
 
   return (
-    <div className='container px-4 pt-5'>
-      <div className='row justify-content-evenly px-2 mb-4'>
-        <div className='col col-12 col-lg-5 col-xl-4 rounded-3 overflow-hidden'>
-          <div className='w-100 rounded-3 product-image hover-zoom'
-            style={{ backgroundImage: `url('${product?.image}')` }} />
-        </div>
-        <div className='col col-12 col-lg-6 py-4'>
-          <h2>{product?.title}</h2>
-          <h5 className='text-danger mb-4'>
-            S/{product?.price?.toFixed(2)}
-            <button className='btn btn-danger mx-3' disabled={loading} onClick={sendOrder}>
-              {
-                loading &&
-                <span className='spinner-border spinner-border-sm me-2' aria-hidden='true' />
+    <>
+      <div className='container px-4 pt-5'>
+        <div className='row justify-content-evenly px-2 mb-4'>
+          <div className='col col-12 col-lg-5 col-xl-4 rounded-3 overflow-hidden'>
+            <div className='w-100 rounded-3 product-image hover-zoom'
+              style={{ backgroundImage: `url('${product?.image}')` }} />
+          </div>
+          <div className='col col-12 col-lg-6 py-4'>
+            <h2>{product?.title}</h2>
+            <h5 className='text-danger mb-4'>
+              S/{product?.price?.toFixed(2)}
+              <button className='btn btn-danger mx-3' disabled={loading} onClick={sendOrder}>
+                {
+                  loading &&
+                  <span className='spinner-border spinner-border-sm me-2' aria-hidden='true' />
 
-              }
-              {
-                loading
-                  ? 'Pidiendo...'
-                  : success ? 'Pedido!' : 'Pídelo ya!'
-              }
-            </button>
-          </h5>
-          {message !== '' && <h5 className='text-success'>{message}</h5>}
-          <p>{product?.description}</p>
+                }
+                {
+                  loading
+                    ? 'Pidiendo...'
+                    : success ? 'Pedido!' : 'Pídelo ya!'
+                }
+              </button>
+            </h5>
+            {message !== '' && <h5 className='text-success'>{message}</h5>}
+            <p>{product?.description}</p>
+          </div>
         </div>
+
+        <h5 className='px-2 px-lg-4'>Productos relacionados</h5>
+        <ProductList quantity={quantity} />
       </div>
-
-      <h5 className='px-2 px-lg-4'>Productos relacionados</h5>
-      <ProductList quantity={quantity} />
-    </div>
+      <Footer />
+    </>
   )
 }
 

@@ -34,11 +34,11 @@
   background-size: cover;
 }
 
-.nav-link {
+.navbar-link {
   transition: all 100ms;
 }
 
-.nav-link:hover {
+.navbar-link:hover {
   font-size: large;
 }
 

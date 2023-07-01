@@ -39,7 +39,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className='pt-5 pb-3'>
+      <div className='pt-5'>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/account' element={<Account />} />
