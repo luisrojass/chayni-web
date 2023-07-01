@@ -33,7 +33,7 @@ function Navbar() {
               <span className='navbar-brand ms-2'>Chayni</span>
             </Link>
 
-            <Link className='nav-link text-decoration-none d-none d-lg-inline-block me-4' to='/'>
+            <Link className='nav-link text-decoration-none d-none d-lg-inline-block me-4' to='/reviews'>
               Reseñas
             </Link>
 

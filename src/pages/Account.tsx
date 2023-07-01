@@ -86,7 +86,7 @@ function Account() {
 
         <div className='col col-12 my-4 d-flex justify-content-center'>
           <div className='position-absolute d-flex justify-content-center'>
-            <Link className='nav-link text-decoration-none me-4' to='/'>
+            <Link className='nav-link text-decoration-none me-4' to='/reviews'>
               Reseñas
             </Link>
 
