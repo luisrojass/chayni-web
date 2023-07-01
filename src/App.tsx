@@ -13,6 +13,7 @@ import ProductPage from './pages/ProductPage'
 import Account from './pages/Account'
 import Orders from './pages/Orders'
 import Reviews from './pages/Reviews'
+import NotFound from './pages/NotFound'
 
 // Hooks
 import { useTheme } from './hooks/useTheme'
@@ -50,7 +51,7 @@ function App() {
           ))
         }
         {/* Change to NotFound page */}
-        <Route path='*' element={<Home />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

@@ -6,9 +6,9 @@ function Footer() {
   }
 
   return (
-    <div className='w-100 mt-3 py-2 px-4' style={{ boxShadow: '1rem 1rem 2rem #000' }}>
+    <div className='w-100 mt-3 py-2 px-4'>
       <footer className='mt-3 mb-4'>
-        <div className='nav justify-content-center justify-content-md-between border-bottom pb-3 mb-3'>
+        <div className='nav justify-content-center justify-content-sm-between border-bottom pb-3 mb-3'>
           <div className='d-flex justify-content-center'>
             <Link className='nav-link text-muted px-2' to='/reviews' onClick={goTop}>
               Reseñas
