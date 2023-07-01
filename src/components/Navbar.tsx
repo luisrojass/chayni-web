@@ -26,11 +26,21 @@ function Navbar() {
     <div className='position-fixed top-0 w-100 z-3'>
       <nav className={`navbar navbar-expand-xxl shadow px-3 bg-${theme}`}>
         <div className='d-flex align-items-center justify-content-between w-100'>
-          <Link className='navbar-brand' to='/'
-            onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}>
-            <img src='/icon32.png' className='pb-1' />
-            <span className='navbar-brand ms-2'>Chayni</span>
-          </Link>
+          <div>
+            <Link className='navbar-brand' to='/'
+              onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}>
+              <img src='/icon32.png' className='pb-1 hover-icon' />
+              <span className='navbar-brand ms-2'>Chayni</span>
+            </Link>
+
+            <Link className='nav-link text-decoration-none d-none d-lg-inline-block me-4' to='/'>
+              Reseñas
+            </Link>
+
+            <Link className='nav-link text-decoration-none d-none d-lg-inline-block' to='/orders'>
+              Mis pedidos
+            </Link>
+          </div>
 
           <div>
             <button className='btn border-0 hover-icon'>

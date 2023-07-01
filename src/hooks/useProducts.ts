@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { Product } from '../schemas/Product'
+import { Product } from '../schemas/product'
 import products from '../data/products.json'
 
 interface Products {

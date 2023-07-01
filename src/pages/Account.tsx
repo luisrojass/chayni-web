@@ -1,6 +1,6 @@
 // Dependencies
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../connections/firebase'
 
 // Components
@@ -50,7 +50,7 @@ function Account() {
       <div className='container pt-5'>
         <i className='bi bi-person-fill-slash d-block text-center' style={{ fontSize: '12rem' }}></i>
         <div className='d-block'>
-          <h2 className='text-center px-3 mb-5'>
+          <h2 className='text-center px-3 mb-4'>
             ¡Inicia sesión para ver tus pedidos, dejar comentarios y más!
           </h2>
           <div className='d-flex justify-content-center'>
@@ -71,6 +71,7 @@ function Account() {
           <div className='rounded-circle user-image m-auto'
             style={{ backgroundImage: `url('${user?.photoURL}')` }} />
         </div>
+
         <div className='col col-12 col-lg-6 pt-4'>
           <h2 className='text-center text-lg-start'>{user?.displayName}</h2>
           <p className='text-center text-lg-start'>{user?.email}</p>
@@ -81,6 +82,16 @@ function Account() {
               <i className='bi bi-box-arrow-right ms-2'></i>
             </button>
           </div>
+        </div>
+
+        <div className='col col-12 mt-4 d-flex justify-content-center'>
+          <Link className='nav-link text-decoration-none me-4' to='/'>
+            Reseñas
+          </Link>
+
+          <Link className='nav-link text-decoration-none' to='/orders'>
+            Mis pedidos
+          </Link>
         </div>
       </div>
 

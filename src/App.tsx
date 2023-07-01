@@ -11,6 +11,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import ProductPage from './pages/ProductPage'
 import Account from './pages/Account'
+import Orders from './pages/Orders'
 
 // Hooks
 import { useTheme } from './hooks/useTheme'
@@ -41,6 +42,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/account' element={<Account />} />
+          <Route path='/orders' element={<Orders />} />
           {
             products.map(({ id }) => (
               <Route path={`/${id}`} key={id} element={<ProductPage />} />

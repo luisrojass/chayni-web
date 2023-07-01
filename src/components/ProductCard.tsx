@@ -6,7 +6,7 @@ import { useTheme } from '../hooks/useTheme'
 import { useProducts } from '../hooks/useProducts'
 
 // Schemas
-import { Product } from '../schemas/Product'
+import { Product } from '../schemas/product'
 
 function ProductCard({ product }: { product: Product }) {
   const { theme } = useTheme()

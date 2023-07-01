@@ -9,17 +9,36 @@ import ProductList from '../components/ProductList'
 import { useProducts } from '../hooks/useProducts'
 
 // Schemas
-import { Product } from '../schemas/Product'
+import { Product } from '../schemas/product'
+
+// Functions
+import { orderProduct } from '../connections/orderProduct'
+import { useSession } from '../hooks/useSession'
 
 function ProductPage() {
   const { pathname } = useLocation()
   const { getProduct } = useProducts()
+  const { user } = useSession()
 
   const [product, setProduct] = useState<Product>()
   const [quantity, setQuantity] = useState(innerWidth > 992 && innerWidth < 1200 ? 3 : 4)
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   const resize = () => {
     setQuantity(innerWidth > 992 && innerWidth < 1200 ? 3 : 4)
+  }
+
+  const sendOrder = async () => {
+    setLoading(true)
+    if (user) {
+      const success = await orderProduct(product as Product, user)
+      setSuccess(success)
+      setTimeout(() => {
+        setSuccess(false)
+      }, 2000)
+    }
+    setLoading(false)
   }
 
   useEffect(() => {
@@ -42,8 +61,20 @@ function ProductPage() {
           <h2>{product?.title}</h2>
           <h5 className='text-danger mb-4'>
             S/{product?.price?.toFixed(2)}
-            <button className='btn btn-danger mx-3'>Solicitar</button>
+            <button className='btn btn-danger mx-3' disabled={loading} onClick={sendOrder}>
+              {
+                loading &&
+                <span className='spinner-border spinner-border-sm me-2' aria-hidden='true' />
+
+              }
+              {
+                loading
+                  ? 'Pidiendo...'
+                  : success ? 'Pedido!' : 'Pídelo ya!'
+              }
+            </button>
           </h5>
+          {success && <h5 className='text-success'>Te enviaremos un email pronto!</h5>}
           <p>{product?.description}</p>
         </div>
       </div>
