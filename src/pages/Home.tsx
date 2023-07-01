@@ -10,7 +10,7 @@ function Home() {
   const [quantity, setQuantity] = useState(12)
 
   return (
-    <>
+    <div className='pt-5'>
       <Banner />
       <ProductList quantity={quantity} />
       {
@@ -22,7 +22,7 @@ function Home() {
         </div>
       }
       <Footer />
-    </>
+    </div>
   )
 }
 

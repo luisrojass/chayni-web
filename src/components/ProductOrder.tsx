@@ -27,7 +27,7 @@ function ProductOrder({ product }: { product: OrderCard }) {
 
   return (
     <div className='col px-0 px-md-3 px-xl-5'>
-      <div className='card shadow h-100 border-0 overflow-hidden'>
+      <div className='card shadow h-100 overflow-hidden'>
         <div className='row row-cols-1 row-cols-lg-2'>
           <div className="col">
             <div className='card-order-image' style={{ backgroundImage: `url('${image}')` }} />
@@ -44,7 +44,14 @@ function ProductOrder({ product }: { product: OrderCard }) {
               {
                 !delivered &&
                 <button className='btn btn-danger' onClick={handleCancel} disabled={loading}>
-                  Cancelar pedido
+                  {
+                    loading
+                      ? <>
+                        <span className='spinner-border spinner-border-sm me-2' role='status' aria-hidden='true' />
+                        Cancelando...
+                      </>
+                      : 'Cancelar pedido'
+                  }
                 </button>
               }
             </div>

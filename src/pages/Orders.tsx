@@ -68,14 +68,14 @@ function Orders() {
 
   if (!user) {
     return (
-      <div className='container pt-5'>
-        <i className='bi bi-person-fill-slash d-block text-center' style={{ fontSize: '12rem' }}></i>
-        <div className='d-block'>
-          <h2 className='text-center px-3 mb-4'>
+      <div className='d-flex align-items-center' style={{ height: '100vh' }}>
+        <div className='container'>
+          <i className='bi bi-person-slash d-block text-center' style={{ fontSize: '6rem' }}></i>
+          <h3 className='text-center px-3 mb-4'>
             ¡Inicia sesión para ver tus pedidos, dejar comentarios y más!
-          </h2>
+          </h3>
           <div className='d-flex justify-content-center'>
-            <button className='btn btn-success' onClick={login}>
+            <button className='btn btn-primary' onClick={login}>
               <i className='bi bi-google me-2'></i>
               Iniciar sesión
             </button>
@@ -87,16 +87,18 @@ function Orders() {
 
   if (orders.length === 0) {
     return (
-      <div className='container pt-5'>
-        <i className='bi bi-bag-check d-block text-center' style={{ fontSize: '12rem' }}></i>
-        <div className='d-block'>
-          <h2 className='text-center px-3 mb-4'>
-            Aún no tienes pedidos. !Pide uno ya!
-          </h2>
-          <div className='d-flex justify-content-center'>
-            <Link to='/'>
-              <button className='btn btn-primary'>Ir a la tienda</button>
-            </Link>
+      <div className='d-flex align-items-center' style={{ height: '100vh' }}>
+        <div className='container'>
+          <i className='bi bi-bag-check d-block text-center' style={{ fontSize: '6rem' }}></i>
+          <div className='d-block'>
+            <h3 className='text-center px-3 mb-4'>
+              Aún no tienes pedidos, ¡pide uno ya!
+            </h3>
+            <div className='d-flex justify-content-center'>
+              <Link to='/'>
+                <button className='btn btn-primary'>Ver chalecos</button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -104,14 +106,16 @@ function Orders() {
   }
 
   return (
-    <div className='container pt-5 px-5'>
-      <h1 className='text-center text-lg-start ms-0 ms-lg-2 ms-xl-5 mb-4'>Mis pedidos</h1>
-      <div className='row row-cols-1 row-cols-md-2 g-4 mb-4'>
-        {
-          orders.map(product => (
-            <ProductOrder key={Math.random()} product={product} />
-          ))
-        }
+    <div className='pt-5'>
+      <div className='container pt-5 px-5'>
+        <h2 className='text-center text-lg-start ms-0 ms-lg-2 ms-xl-5 mb-4'>Mis pedidos</h2>
+        <div className='row row-cols-1 row-cols-md-2 g-4 mb-4'>
+          {
+            orders.map(product => (
+              <ProductOrder key={Math.random()} product={product} />
+            ))
+          }
+        </div>
       </div>
     </div>
   )

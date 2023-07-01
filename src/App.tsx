@@ -39,21 +39,19 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <div className='pt-5'>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/account' element={<Account />} />
-          <Route path='/orders' element={<Orders />} />
-          <Route path='/reviews' element={<Reviews />} />
-          {
-            products.map(({ id }) => (
-              <Route path={`/${id}`} key={id} element={<ProductPage />} />
-            ))
-          }
-          {/* Change to NotFound page */}
-          <Route path='*' element={<Home />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/account' element={<Account />} />
+        <Route path='/orders' element={<Orders />} />
+        <Route path='/reviews' element={<Reviews />} />
+        {
+          products.map(({ id }) => (
+            <Route path={`/${id}`} key={id} element={<ProductPage />} />
+          ))
+        }
+        {/* Change to NotFound page */}
+        <Route path='*' element={<Home />} />
+      </Routes>
     </BrowserRouter>
   )
 }

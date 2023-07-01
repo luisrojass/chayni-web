@@ -65,7 +65,7 @@ function Navbar() {
                     </Link>
                   )
                   : (
-                    <button className='btn btn-success my-0' onClick={login}>
+                    <button className='btn btn-primary my-0' onClick={login}>
                       <i className='bi bi-google me-2'></i>
                       Iniciar sesión
                     </button>

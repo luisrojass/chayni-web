@@ -56,36 +56,48 @@ function Reviews() {
     )
   }
 
-  if (!user) {
+  if (reviews.length === 0) {
     return (
-      <>
-        <div className='container pt-3 pt-lg-4 pb-5'>
-          <h2 className='text-center text-md-start px-3 px-md-5 px-lg-4 my-4'>
-            Lo que dicen nuestros clientes
-          </h2>
-          <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 px-4 pb-5 g-3'>
-            {
-              reviews.map(review => (
-                <ReviewCard key={Math.random()} review={review} />
-              ))
-            }
-          </div>
+      <div className='d-flex align-items-center' style={{ height: '100vh' }}>
+        <div className='container'>
+          <i className='bi bi-chat-left-dots d-block text-center' style={{ fontSize: '6rem' }}></i>
+          <h3 className='text-center px-3 mb-4'>
+            Aún no hay comentarios, ¡sé el primero en dejar uno!
+          </h3>
         </div>
 
-        <div className={`position-fixed w-100 bottom-0 pt-3 pb-2 px-4 bg-${theme} z-1`}
-          style={{ boxShadow: '1rem 1rem 2rem #000' }}>
-          <h5 className='text-center'>
-            ¡Inicia sesión para dejar un comentario!
-          </h5>
-        </div>
-      </>
+        {
+          user
+            ? (
+              <div className={`position-fixed w-100 bottom-0 p-3 px-lg-5 bg-${theme} z-1`}
+                style={{ boxShadow: '1rem 1rem 2rem #000' }}>
+                <div className='input-group'>
+                  <textarea className='form-control' placeholder='Los chalecos me parecieron...'
+                    rows={1} onChange={e => setContent(e.target.value)} value={content}></textarea>
+                  <button className='btn btn-primary' onClick={postReview} disabled={loading}>
+                    {loading && <span className='spinner-border spinner-border-sm me-2' />}
+                    Publicar
+                  </button>
+                </div>
+              </div>
+            )
+            : (
+              <div className={`position-fixed w-100 bottom-0 pt-3 pb-2 px-4 bg-${theme} z-1`}
+                style={{ boxShadow: '1rem 1rem 2rem #000' }}>
+                <h5 className='text-center'>
+                  ¡Inicia sesión para dejar un comentario!
+                </h5>
+              </div>
+            )
+        }
+      </div >
     )
   }
 
   return (
-    <>
+    <div className='pt-5'>
       <div className='container pt-3 pt-lg-4 pb-5'>
-        <h2 className='text-center text-md-start px-3 px-md-5 px-lg-4 my-4'>
+        <h2 className='text-center text-md-start px-3 px-md-4 my-4'>
           Lo que dicen nuestros clientes
         </h2>
         <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 px-4 pb-5 g-3'>
@@ -97,18 +109,31 @@ function Reviews() {
         </div>
       </div>
 
-      <div className={`position-fixed w-100 bottom-0 p-3 px-lg-5 bg-${theme} z-1`}
-        style={{ boxShadow: '1rem 1rem 2rem #000' }}>
-        <div className='input-group'>
-          <textarea className='form-control' placeholder='Los chalecos me parecieron...'
-            rows={1} onChange={e => setContent(e.target.value)} value={content}></textarea>
-          <button className='btn btn-primary' onClick={postReview} disabled={loading}>
-            {loading && <span className='spinner-border spinner-border-sm me-2' />}
-            Publicar
-          </button>
-        </div>
-      </div>
-    </>
+      {
+        user
+          ? (
+            <div className={`position-fixed w-100 bottom-0 p-3 px-lg-5 bg-${theme} z-1`}
+              style={{ boxShadow: '1rem 1rem 2rem #000' }}>
+              <div className='input-group'>
+                <textarea className='form-control' placeholder='Los chalecos me parecieron...'
+                  rows={1} onChange={e => setContent(e.target.value)} value={content}></textarea>
+                <button className='btn btn-primary' onClick={postReview} disabled={loading}>
+                  {loading && <span className='spinner-border spinner-border-sm me-2' />}
+                  Publicar
+                </button>
+              </div>
+            </div>
+          )
+          : (
+            <div className={`position-fixed w-100 bottom-0 pt-3 pb-2 px-4 bg-${theme} z-1`}
+              style={{ boxShadow: '1rem 1rem 2rem #000' }}>
+              <h5 className='text-center'>
+                ¡Inicia sesión para dejar un comentario!
+              </h5>
+            </div>
+          )
+      }
+    </div>
   )
 }
 

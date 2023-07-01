@@ -48,14 +48,14 @@ function Account() {
 
   if (!user) {
     return (
-      <div className='container pt-5'>
-        <i className='bi bi-person-fill-slash d-block text-center' style={{ fontSize: '12rem' }}></i>
-        <div className='d-block'>
-          <h2 className='text-center px-3 mb-4'>
+      <div className='d-flex align-items-center' style={{ height: '100vh' }}>
+        <div className='container'>
+          <i className='bi bi-person-slash d-block text-center' style={{ fontSize: '6rem' }}></i>
+          <h3 className='text-center px-3 mb-4'>
             ¡Inicia sesión para ver tus pedidos, dejar comentarios y más!
-          </h2>
+          </h3>
           <div className='d-flex justify-content-center'>
-            <button className='btn btn-success' onClick={login}>
+            <button className='btn btn-primary' onClick={login}>
               <i className='bi bi-google me-2'></i>
               Iniciar sesión
             </button>
@@ -66,7 +66,7 @@ function Account() {
   }
 
   return (
-    <>
+    <div className='pt-5'>
       <div className='container pt-4'>
         <div className='row justify-content-center py-5 px-4'>
           <div className='col col-12 col-lg-6'>
@@ -106,7 +106,7 @@ function Account() {
         <ProductList quantity={12} />
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 

@@ -71,7 +71,7 @@ function ProductPage() {
   }, [pathname])
 
   return (
-    <>
+    <div className='pt-5'>
       <div className='container px-4 pt-5'>
         <div className='row justify-content-evenly px-2 mb-4'>
           <div className='col col-12 col-lg-5 col-xl-4 rounded-3 overflow-hidden'>
@@ -104,7 +104,7 @@ function ProductPage() {
         <ProductList quantity={quantity} />
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
